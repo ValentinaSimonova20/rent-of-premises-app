@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список офисов</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    {% for item in premises %}
+    <div>
+        <p>{{ item.areaName }}</p>
+        <p>{{ item.describe }}</p>
+        <p>Площадь: {{ item.area }}</p>
+        <p>Этаж: {{ item.floor}}</p>
+        <p>Цена: {{ item.price}}</p>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
