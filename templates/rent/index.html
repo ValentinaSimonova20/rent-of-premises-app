@@ -13,6 +13,7 @@
         <p>Площадь: {{ item.area }}</p>
         <p>Этаж: {{ item.floor}}</p>
         <p>Цена: {{ item.price}}</p>
+        <img src="{{ item.photo.url }}" alt=""/>
     </div>
     {% endfor %}
 
