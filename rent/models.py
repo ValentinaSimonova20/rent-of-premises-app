@@ -1,23 +1,5 @@
 from django.db import models
-
-
-class User(models.Model):
-    userName = models.CharField(verbose_name='Имя пользователя',
-                                max_length=30)
-    userSurname = models.CharField(verbose_name='Фамилия пользователя',
-                                   max_length=40)
-    email = models.CharField(verbose_name='e-mail',
-                             max_length=150)
-    password = models.CharField(verbose_name='Пароль',
-                                max_length=30)
-    role = models.CharField(verbose_name='Роль', max_length=30)
-
-    class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
-
-    def __str__(self):
-        return self.email
+from django.contrib.auth.models import User
 
 
 class Premises(models.Model):
@@ -46,7 +28,7 @@ class Premises(models.Model):
 
 
 class Applications(models.Model):
-    client = models.ForeignKey('User', verbose_name='Клиент', on_delete=models.PROTECT, null=False)
+    client = models.ForeignKey(User, verbose_name='Клиент', on_delete=models.PROTECT, null=False)
 
     premises = models.ForeignKey('Premises', verbose_name='Помещение', on_delete=models.PROTECT, null=False)
 
