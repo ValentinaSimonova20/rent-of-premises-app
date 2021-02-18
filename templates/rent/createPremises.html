@@ -1,0 +1,10 @@
+{% extends "layout/basic.html" %}
+{% block title %}Добавление площади{% endblock %}
+{% block content %}
+    <h1>Добавление площади</h1>
+<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Добавить">
+    </form>
+{% endblock %}
