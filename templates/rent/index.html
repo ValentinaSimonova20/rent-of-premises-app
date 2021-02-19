@@ -2,7 +2,7 @@
 {% block content %}
     {% for item in premises %}
     <div>
-        <p>{{ item.areaName }}</p>
+        <p><a href="{% url 'by_area' item.pk %}">{{ item.areaName }}</a></p>
         <p>{{ item.describe }}</p>
         <p>Площадь: {{ item.area }}</p>
         <p>Этаж: {{ item.floor}}</p>

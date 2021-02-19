@@ -1,0 +1,19 @@
+{% extends "layout/basic.html" %}
+{% block title %}{{ current_area.areaName }}{% endblock %}
+{% block content %}
+    <div>
+        <h2>{{ current_area.areaName }}</h2>
+        <p>{{ current_area.describe }}</p>
+        <p>Площадь: {{ current_area.area }}</p>
+        <p>Этаж: {{ current_area.floor }}</p>
+        <p>Цена/месяц: {{ current_area.price }}</p>
+        <img src="{{ current_area.photo.url }}" alt=""/>
+
+        {% if  current_area.purpose.all.exists%}
+        <p>Возможные назначения: </p>
+        {% for purp in current_area.purpose.all %}
+            <p>{{ purp.purposeName }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

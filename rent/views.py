@@ -6,6 +6,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 
+
 # вывод списка всех офисов
 def index(request):
     premises = Premises.objects.all()
@@ -15,6 +16,13 @@ def index(request):
     }
 
     return render(request, template_name='rent/index.html', context=context)
+
+
+def by_area(request, area_id):
+    current_area = Premises.objects.get(pk=area_id)
+    context = {'current_area': current_area}
+
+    return render(request, 'rent/by_area.html', context)
 
 
 # добавление офиса
