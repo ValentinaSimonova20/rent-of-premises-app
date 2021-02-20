@@ -15,5 +15,11 @@
             <p>{{ purp.purposeName }}</p>
         {% endfor %}
         {% endif %}
+
+    <form action="{% url 'addApp' current_area.pk%}" method="post">
+        {% csrf_token %}
+        Дополнительная информация для заявки: <input type="text" name="addInfo"/>
+        <button type="submit" name='mybtn2'>Подать заявку</button>
+    </form>
     </div>
 {% endblock %}

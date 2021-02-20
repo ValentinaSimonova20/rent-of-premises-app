@@ -1,0 +1,11 @@
+{% extends "layout/basic.html" %}
+{% block content %}
+    {% for app in apps %}
+        <p>{{ app.additionalInfo }}</p>
+        <p><a href="{% url 'by_area' app.premises.pk %}">{{ app.premises.areaName }}</a></p>
+        <p>{{ app.created_at}}</p><br>
+        {% if user.is_staff %}
+            <p>{{ app.client.first_name}} {{ app.client.last_name }}</p><br><br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
