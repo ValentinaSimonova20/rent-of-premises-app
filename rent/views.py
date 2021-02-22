@@ -20,7 +20,10 @@ def index(request):
 
 def by_area(request, area_id):
     current_area = Premises.objects.get(pk=area_id)
-    context = {'current_area': current_area}
+    context = {
+        'current_area': current_area,
+        'message': ""
+    }
 
     return render(request, 'rent/by_area.html', context)
 
@@ -61,8 +64,20 @@ def get_apps(request):
 # подать заявку на площадь
 def add_app(request, area_id):
     current_area = Premises.objects.get(pk=area_id)
-    new_app = Applications(client=request.user, premises=current_area, additionalInfo=request.POST['addInfo'])
-    new_app.save()
-    current_area = Premises.objects.get(pk=area_id)
-    context = {'current_area': current_area}
-    return render(request, 'rent/by_area.html', context)
+    try:
+        Applications.objects.get(client=request.user, premises=current_area)
+        context = {
+            "message": "Вы уже подавали заявку на данную площадь",
+            'current_area': current_area
+        }
+        return render(request, 'rent/by_area.html', context)
+    except Applications.DoesNotExist:
+        new_app = Applications(client=request.user, premises=current_area, additionalInfo=request.POST['addInfo'])
+        new_app.save()
+        applications = Applications.objects.all().filter(client=request.user)
+        context = {
+            'apps': applications
+        }
+        return render(request, 'rent/applications.html', context)
+
+

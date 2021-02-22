@@ -23,8 +23,8 @@ from rent.views import SignUpView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('rent.urls')),
-    path('accounts/login', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/',  SignUpView.as_view(), name='signup')
 ]
 
