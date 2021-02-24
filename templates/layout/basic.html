@@ -22,10 +22,13 @@
       <a href="{% url 'signup' %}" class="nav-link">Регистрация</a>
     {% endif %}
 </nav>
-    <section class="p-5">
+<div class="container mt-3">
+ <div class="col-md-9">
+    <section>
         {% block content %}
         {% endblock %}
     </section>
-
+ </div>
+</div>
 </body>
 </html>

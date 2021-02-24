@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import PremisesForm
+from .forms import PremisesForm, UserRegisterForm
 
 from .models import Premises, Applications
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
 
 
 # вывод списка всех офисов
@@ -42,7 +41,7 @@ def image_upload_view(request):
 
 # регистрация
 class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = UserRegisterForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
@@ -79,5 +78,3 @@ def add_app(request, area_id):
             'apps': applications
         }
         return render(request, 'rent/applications.html', context)
-
-

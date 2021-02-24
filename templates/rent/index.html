@@ -1,14 +1,27 @@
 {% extends "layout/basic.html" %}
 {% block content %}
+
     {% for item in premises %}
-    <div>
-        <p><a href="{% url 'by_area' item.pk %}">{{ item.areaName }}</a></p>
-        <p>{{ item.describe }}</p>
-        <p>Площадь: {{ item.area }}</p>
-        <p>Этаж: {{ item.floor}}</p>
-        <p>Цена: {{ item.price}}</p>
-        <img src="{{ item.photo.url }}" alt=""/>
-    </div>
+        <div class="card mb-3" >
+        <h4 class="card-header"><a href="{% url 'by_area' item.pk %}">{{ item.areaName }}</a></h4>
+    <div class="row">
+        <div class="col-lg-5">
+            <a href="{% url 'by_area' item.pk %}">
+                            <img src="{{ item.photo.url }}" alt=""/>
+                 </a>
+        </div>
+
+            <div class="col-lg-7">
+
+                <h5 class="card-title">{{ item.describe }}</h5>
+                <p class="card-text">Площадь: {{ item.area }}</p>
+                <p class="card-text">Этаж: {{ item.floor}}</p>
+                <p class="card-text">Цена: {{ item.price}}</p>
+            </div>
+
+        </div>
+        </div>
     {% endfor %}
+
 
 {% endblock %}
