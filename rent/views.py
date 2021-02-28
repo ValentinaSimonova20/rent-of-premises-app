@@ -51,7 +51,6 @@ def get_apps(request):
     if request.user.is_staff:
         applications = Applications.objects.all()
     else:
-
         applications = Applications.objects.all().filter(client=request.user)
     context = {
         'apps': applications
